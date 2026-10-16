@@ -308,18 +308,51 @@
       object-fit: cover;
     }
 
-    .caption {
-      display: block;
-      padding: 4px 6px;
-      font-size: 9px;
-      color: var(--muted);
+    .donate-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: linear-gradient(135deg, rgba(184, 243, 90, 0.08), rgba(90, 209, 243, 0.08));
+      border: 1px solid rgba(184, 243, 90, 0.25);
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      transition: all 0.15s ease;
+    }
+
+    .donate-banner:hover {
+      background: linear-gradient(135deg, rgba(184, 243, 90, 0.15), rgba(90, 209, 243, 0.15));
+      border-color: var(--accent);
+    }
+
+    .donate-icon {
+      font-size: 13px;
+      margin-right: 6px;
+    }
+
+    .donate-text {
+      flex: 1;
+      color: var(--text);
+    }
+
+    .donate-badge {
+      padding: 2px 7px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--bg);
+      background: var(--accent);
+      border-radius: 4px;
+      letter-spacing: 0.02em;
     }
   </style>
 </head>
 <body>
   <header>
     <div class="brand">
-      <div class="logo">3D</div>
+      <img class="logo" src="icons/icon32.png" alt="3D">
       <h1>3D Downloader</h1>
     </div>
   </header>
@@ -362,6 +395,16 @@
   <main id="dashboard" hidden>
     <div id="grid"></div>
   </main>
+
+  <footer style="margin-top: 12px;">
+    <a href="https://buy.stripe.com/dRm8wI8Hk0wq3Y692vcEw0h" target="_blank" rel="noopener noreferrer" class="donate-banner">
+      <div style="display: flex; align-items: center;">
+        <span class="donate-icon">☕</span>
+        <span class="donate-text">Support Developer</span>
+      </div>
+      <span class="donate-badge">Donate</span>
+    </a>
+  </footer>
 
   <script type="module" src="popup.js"></script>
 </body>
