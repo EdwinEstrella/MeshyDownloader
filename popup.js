@@ -469,4 +469,14 @@ async function init() {
   });
 }
 
+// Ensure all external links open cleanly in a new browser tab
+document.addEventListener("click", (e) => {
+  const link = e.target.closest('a[href^="http"]');
+  if (link) {
+    e.preventDefault();
+    chrome.tabs.create({ url: link.href });
+  }
+});
+
 init();
+

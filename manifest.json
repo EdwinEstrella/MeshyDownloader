@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "3D Model Asset Downloader",
-  "version": "2.1.0",
+  "version": "0.0.1",
   "description": "Download 3D models and textures from Meshy and Tripo3D as GLB, OBJ, FBX, STL, and 3MF.",
   "icons": {
     "16": "icons/icon16.png",

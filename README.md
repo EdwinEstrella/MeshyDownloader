@@ -105,6 +105,8 @@ The extension is structured around an asynchronous, non-blocking pipeline:
 
 If this tool accelerates your 3D workflow and helps your creative projects, consider supporting its maintenance and future improvements:
 
+[![Support via Stripe](assets/donate-banner.png)](https://buy.stripe.com/dRm8wI8Hk0wq3Y692vcEw0h)
+
 [![Donate with Stripe](https://img.shields.io/badge/Donate-Stripe%20Payment-635BFF?style=for-the-badge&logo=stripe&logoColor=white)](https://buy.stripe.com/dRm8wI8Hk0wq3Y692vcEw0h)
 
 Direct link: [**buy.stripe.com/dRm8wI8Hk0wq3Y692vcEw0h**](https://buy.stripe.com/dRm8wI8Hk0wq3Y692vcEw0h)

@@ -347,6 +347,25 @@
       border-radius: 4px;
       letter-spacing: 0.02em;
     }
+    .header-donate-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--bg);
+      background: linear-gradient(135deg, var(--accent), #f0c987);
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: filter 0.15s ease, transform 0.15s ease;
+    }
+
+    .header-donate-btn:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
   </style>
 </head>
 <body>
@@ -355,6 +374,10 @@
       <img class="logo" src="icons/icon32.png" alt="3D">
       <h1>3D Downloader</h1>
     </div>
+    <a href="https://buy.stripe.com/dRm8wI8Hk0wq3Y692vcEw0h" class="header-donate-btn" title="Donate via Stripe">
+      <span>☕</span>
+      <span>Donate</span>
+    </a>
   </header>
 
   <nav class="nav-tabs" id="nav-tabs" hidden>
