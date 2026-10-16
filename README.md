@@ -1,9 +1,15 @@
-# 3D Model Asset Downloader
+<p align="center">
+  <img src="icons/icon.png" width="128" alt="3D Model Asset Downloader Logo">
+</p>
 
-[![Manifest V3](https://img.shields.io/badge/Manifest-V3-brightgreen.svg)](#technical-architecture)
-[![Client-Side Processing](https://img.shields.io/badge/Processing-100%25%20In--Browser-blue.svg)](#privacy--security)
-[![Zero Telemetry](https://img.shields.io/badge/Telemetry-None-success.svg)](#privacy--security)
-[![Donate via Stripe](https://img.shields.io/badge/Donate-Stripe-635BFF.svg?logo=stripe&logoColor=white)](https://buy.stripe.com/dRm8wI8Hk0wq3Y692vcEw0h)
+<h1 align="center">3D Model Asset Downloader</h1>
+
+<p align="center">
+  <a href="#technical-architecture"><img src="https://img.shields.io/badge/Manifest-V3-brightgreen.svg" alt="Manifest V3"></a>
+  <a href="#privacy--security"><img src="https://img.shields.io/badge/Processing-100%25%20In--Browser-blue.svg" alt="Processing 100% In-Browser"></a>
+  <a href="#privacy--security"><img src="https://img.shields.io/badge/Telemetry-None-success.svg" alt="Zero Telemetry"></a>
+  <a href="https://buy.stripe.com/dRm8wI8Hk0wq3Y692vcEw0h"><img src="https://img.shields.io/badge/Donate-Stripe-635BFF.svg?logo=stripe&logoColor=white" alt="Donate via Stripe"></a>
+</p>
 
 A high-performance, privacy-focused browser extension for extracting and exporting 3D assets and PBR texture maps from **Meshy AI** and **Tripo3D Studio** into production-ready formats (**GLB**, **OBJ + MTL**, **FBX**, **STL**, **3MF**).
 
