@@ -1,0 +1,70 @@
+{
+  "manifest_version": 3,
+  "name": "3D Model Asset Downloader",
+  "version": "2.1.0",
+  "description": "Download 3D models and textures from Meshy and Tripo3D as GLB, OBJ, FBX, STL, and 3MF.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "storage",
+    "cookies"
+  ],
+  "host_permissions": [
+    "https://www.meshy.ai/*",
+    "https://meshy.ai/*",
+    "https://*.meshy.ai/*",
+    "https://assets.meshy.ai/*",
+    "https://api.meshy.ai/*",
+    "https://studio.tripo3d.ai/*",
+    "https://tripo3d.ai/*",
+    "https://*.tripo3d.ai/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "3D Model Asset Downloader"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.meshy.ai/*",
+        "https://meshy.ai/*",
+        "https://*.meshy.ai/*",
+        "https://studio.tripo3d.ai/*",
+        "https://tripo3d.ai/*",
+        "https://*.tripo3d.ai/*"
+      ],
+      "js": ["page-hook.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://www.meshy.ai/*",
+        "https://meshy.ai/*",
+        "https://*.meshy.ai/*",
+        "https://studio.tripo3d.ai/*",
+        "https://tripo3d.ai/*",
+        "https://*.tripo3d.ai/*"
+      ],
+      "js": ["content-bridge.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["page-hook.js"],
+      "matches": [
+        "https://www.meshy.ai/*",
+        "https://meshy.ai/*",
+        "https://*.meshy.ai/*",
+        "https://studio.tripo3d.ai/*",
+        "https://tripo3d.ai/*",
+        "https://*.tripo3d.ai/*"
+      ]
+    }
+  ]
+}

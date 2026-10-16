@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>3D Downloader</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #181b24;
+      --surface-hover: #1f2330;
+      --border: #2a2f3d;
+      --text: #f2f4f8;
+      --muted: #8b93a7;
+      --accent: #b8f35a;
+      --accent-2: #5ad1f3;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      width: 360px;
+      margin: 0;
+      padding: 14px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid;
+      place-items: center;
+      color: var(--bg);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 10px;
+      background: var(--surface);
+      padding: 3px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .nav-tab {
+      flex: 1;
+      padding: 5px 8px;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s ease;
+    }
+
+    .nav-tab.active {
+      color: var(--text);
+      background: var(--surface-hover);
+    }
+
+    [hidden] { display: none !important; }
+
+    .detail-hero {
+      position: relative;
+      margin-bottom: 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 40%, #2a2f3d, var(--surface));
+    }
+
+    #detail-preview {
+      width: 100%;
+      height: 170px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .panel {
+      margin-bottom: 10px;
+      padding: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    #gen-title {
+      margin: 0 0 10px;
+      font-size: 13px;
+      font-weight: 700;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #formats {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .format {
+      padding: 6px 0;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .format.active {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(184, 243, 90, 0.08);
+    }
+
+    .format:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    #download-model {
+      width: 100%;
+      padding: 10px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--bg);
+      background: linear-gradient(90deg, var(--accent), #f0c987);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #download-full-bundle {
+      width: 100%;
+      padding: 8px;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text);
+      background: var(--surface-hover);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #download-full-bundle:hover {
+      border-color: var(--accent);
+    }
+
+    #download-model:disabled,
+    #download-full-bundle:disabled,
+    .texture-download:disabled,
+    #download-all-textures:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    #download-note {
+      margin: 6px 0 0;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .panel-head h3 {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    #download-all-textures {
+      padding: 3px 8px;
+      font: inherit;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid rgba(184, 243, 90, 0.3);
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #textures {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    .texture {
+      padding: 6px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .texture img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      display: block;
+      object-fit: cover;
+      border-radius: 4px;
+      background: var(--surface);
+    }
+
+    .texture-label {
+      display: block;
+      margin: 6px 0 4px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .texture-download {
+      width: 100%;
+      padding: 4px;
+      font: inherit;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #empty-state {
+      padding: 30px 16px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+    }
+
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .card {
+      margin: 0;
+      padding: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+    }
+
+    .thumb {
+      width: 100%;
+      aspect-ratio: 1;
+      display: block;
+      object-fit: cover;
+    }
+
+    .caption {
+      display: block;
+      padding: 4px 6px;
+      font-size: 9px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">3D</div>
+      <h1>3D Downloader</h1>
+    </div>
+  </header>
+
+  <nav class="nav-tabs" id="nav-tabs" hidden>
+    <button class="nav-tab active" id="tab-active" type="button">Active</button>
+    <button class="nav-tab" id="tab-gallery" type="button">Gallery</button>
+  </nav>
+
+  <div id="empty-state" hidden>
+    No 3D model detected.
+  </div>
+
+  <section id="detail" hidden>
+    <div class="detail-hero">
+      <img id="detail-preview" alt="Preview">
+    </div>
+
+    <div class="panel">
+      <h3 id="gen-title">Model</h3>
+      <div id="formats"></div>
+
+      <div class="btn-group">
+        <button id="download-model" type="button" disabled>Download GLB</button>
+        <button id="download-full-bundle" type="button" disabled>Download All (.zip)</button>
+      </div>
+
+      <p id="download-note" hidden></p>
+    </div>
+
+    <div class="panel" id="textures-panel">
+      <div class="panel-head">
+        <h3>Textures</h3>
+        <button id="download-all-textures" type="button">Download All (.zip)</button>
+      </div>
+      <div id="textures"></div>
+    </div>
+  </section>
+
+  <main id="dashboard" hidden>
+    <div id="grid"></div>
+  </main>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

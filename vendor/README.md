@@ -1,0 +1,1 @@
+three-bundle.js: three.js 0.186.1 (core bits, GLTFLoader, OBJExporter, STLExporter, fflate zipSync/strToU8), minified with esbuild from `npm i three esbuild` in a scratch dir. One-time vendoring; MV3 forbids remote code. Regenerate only to upgrade three.js.
